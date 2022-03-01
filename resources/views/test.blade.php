@@ -28,4 +28,15 @@
     {{-- Blade foreach-statements --}}
     @include('includes.list', ['items' => $teilnehmer])
 
+    <hr>
+
+    <form action="{{ route('storePostRoute') }}" method="POST">
+        @csrf
+        <input type="text" name="title" placeholder="Titel">
+        <br>
+        <textarea name="content" placeholder="Content"></textarea>
+        <br>
+        <input type="submit" value="Post speichern">
+    </form>
+
 @endsection

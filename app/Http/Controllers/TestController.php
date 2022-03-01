@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -21,5 +23,12 @@ class TestController extends Controller
             'corona' => $corona,
             'teilnehmer' => $teilnehmer,
         ]);
+    }
+
+    public function storePost(StorePostRequest $request)
+    {
+        $post = Post::create($request->validated());
+
+        return 'Dein Post wurde gespeichert, ID: '.$post->id;
     }
 }
