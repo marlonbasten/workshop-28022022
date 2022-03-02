@@ -16,8 +16,8 @@ class SetLocaleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        echo 'das ist meine setLocale middleware';
-        die();
+//        echo 'das ist meine setLocale middleware';
+//        die();
 
         return $next($request);
     }

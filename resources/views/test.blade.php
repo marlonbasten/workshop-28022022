@@ -26,7 +26,13 @@
     <hr>
 
     {{-- Blade foreach-statements --}}
-    @include('includes.list', ['items' => $teilnehmer])
+    <ul>
+        @foreach($posts as $post)
+            <li>{{ $post->title }}</li>
+        @endforeach
+    </ul>
+
+    {{ $posts->links() }}
 
     <hr>
 

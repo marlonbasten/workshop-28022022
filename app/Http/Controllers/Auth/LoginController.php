@@ -40,21 +40,21 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
-    {
-        $user = User::where('email', $request->email)->first();
-
-        $success = auth()->attempt([
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
-
-        if ($success) {
-            auth()->login($user);
-        } else {
-            dd('Falsches passwort!');
-        }
-
-        dd($user);
-    }
+//    public function login(Request $request)
+//    {
+//        $user = User::where('email', $request->email)->first();
+//
+//        $success = auth()->attempt([
+//            'email' => $request->email,
+//            'password' => $request->password,
+//        ]);
+//
+//        if ($success) {
+//            auth()->login($user);
+//        } else {
+//            dd('Falsches passwort!');
+//        }
+//
+//        dd($user);
+//    }
 }
