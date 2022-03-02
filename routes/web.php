@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\DynamicController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    return 'home';
 });
 
 Route::get('/test', [TestController::class, 'testRoute']);
@@ -16,6 +17,8 @@ Route::get('/post/{post}/delete', [PostController::class, 'destroy'])->middlewar
 
 Route::get('/upload', [TestController::class, 'uploadForm']);
 Route::post('/handleUpload', [TestController::class, 'handleUpload'])->name('handleUpload');
+
+Route::get('/dynamic/{route}', [DynamicController::class, 'boot']);
 
 //Route::middleware('setLocale')->name('post.')->prefix('/posts')->controller(TestController::class)->group(function () {
 //
