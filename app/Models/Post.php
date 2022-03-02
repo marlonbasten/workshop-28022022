@@ -26,8 +26,15 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'content'
+        'content',
     ];
+
+//    protected $guarded = [
+//        'id',
+//        'user_id',
+//        'created_at',
+//        'updated_at'
+//    ];
 
     public function user(): BelongsTo
     {
@@ -50,10 +57,5 @@ class Post extends Model
     public function likes()
     {
         return $this->belongsToMany(User::class, 'user_post_like')->withTimestamps();
-    }
-
-    public function activeLikes()
-    {
-        return $this->likes()->wherePivotNull('deleted_at');
     }
 }

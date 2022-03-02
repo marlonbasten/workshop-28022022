@@ -24,6 +24,11 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::with('likes')->get();
+
+//        $token = auth()->user()->createToken('API Token Nummer 1', ['post:list']);
+//
+//        dd($token->plainTextToken);
+
         return view('home', [
             'posts' => $posts,
         ]);

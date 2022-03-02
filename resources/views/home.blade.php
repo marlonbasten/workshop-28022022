@@ -14,17 +14,16 @@
                             </div>
                         @endif
 
-
                         <h2>Posts</h2>
 
                         <ul>
                             @foreach($posts as $post)
                                 <li>
                                     {{ $post->title }}
-                                    - {{ $post->activeLikes()->count() }} Like(s)
-                                    - @foreach($post->activeLikes()->orderBy('id', 'desc')->take(3)->get() as $like) {{ $like->name }} @endforeach
+                                    - {{ $post->likes->count() }} Like(s)
+                                    - @foreach($post->likes->sortBy('id')->take(3) as $like) {{ $like->name }} @endforeach
                                     - <a href="{{ route('post.like', ['id' => $post->id]) }}">
-                                        {{ $post->activeLikes()->find(auth()->id()) ? 'Like entfernen' : 'Like' }}
+                                        {{ $post->likes->find(auth()->id()) ? 'Like entfernen' : 'Like' }}
                                     </a>
                                     - <a href="{{ route('post.destroy', ['post' => $post->id]) }}">Löschen</a>
                                 </li>

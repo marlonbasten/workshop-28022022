@@ -7,7 +7,6 @@ use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -27,6 +26,8 @@ class PostController extends Controller
         if ($request->title !== null) {
             $posts->where('title', '=', $request->title);
         }
+
+        $posts->where('user_id', '=', auth()->user()->id);
 
         return $posts->get();
     }

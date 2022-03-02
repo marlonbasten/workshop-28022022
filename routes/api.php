@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,4 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('post', PostController::class);
+Route::apiResource('post', PostController::class)->middleware(['auth:jwt']);
+
+Route::post('/login', [AuthController::class, 'login'])->name('api.login');
+Route::get('/refresh', [AuthController::class, 'refresh'])->name('api.refresh')->middleware('auth:jwt');
